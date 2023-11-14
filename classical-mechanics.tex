@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{multicol}
+
+% MATH
+\usepackage{amsmath, amssymb, physics}
+
+% CUSTOMIZED COMMANDS
+\newcommand{\p}{\partial}
+
+\begin{document}
+
+\begin{multicols}{2}
+
+Stationary action principle
+\begin{gather}
+    \mathcal{S}(q) = \int \mathcal{L}(q,\dot{q},t) dt
+\end{gather}
+Equation of motion $q(t)$ can be obtained by $\delta \mathcal{S} = 0$.
+
+Langrange Mechanics
+
+The Euler-Lagrange equation
+\begin{gather}
+    \boxed{
+        \frac{d}{d\tau}\left(\frac{\partial \mathcal{L}}{\partial \dot t}\right) - \frac{\partial \mathcal{L}}{\partial q} = 0
+    }
+\end{gather}
+In many systems $\mathcal{L} = T - V$
+
+Hamiltonian Mechanics
+\begin{gather}
+    \dv{\mathcal{L}}{t} = 0 \implies \boxed{\mathcal{H}(p,q,t) = p_i\dot{q}^i - \mathcal{L}(q,\dot{q},t)}\\
+    \dv{\vb{q}}{t} = \pdv{\mathcal{H}}{\vb{p}}, \quad \dv{\vb{p}}{t} = -\pdv{\mathcal{H}}{\vb{q}}
+\end{gather}
+
+Possion brackets
+\begin{gather}
+    \dv{f}{t} = \poissonbracket{f}{\mathcal{H}} + \pdv{f}{t}
+\end{gather}
+
+
+\end{multicols}
+
+\end{document}

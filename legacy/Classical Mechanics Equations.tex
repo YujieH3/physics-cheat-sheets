@@ -1,0 +1,225 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, bm, extarrows}
+%\usepackage[none]{hyphenat}%prevent hyphenated words
+\usepackage{fancyhdr}
+\usepackage{graphicx, float}
+\usepackage{multicol}
+\usepackage{siunitx}
+%\usepackage[UTF8]{ctex}
+
+\def\D{\partial}
+\def\d{\mathrm{d}}
+
+%opening
+\title{Classical Mechanics Equations}
+\author{He Yujie}
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+
+\section{d'Alembert's Principle}
+
+\subsection{Principle of virtual work}
+
+\begin{align}
+	\delta W &= \sum^n_{i = 1} \bm{F}_i \cdot \delta \bm{r}_i\\
+	Q_\alpha &= \sum^n_{i = 1} \bm{F}_i \cdot \dfrac{\D \bm{r}_i}{q_\alpha} = 0\\
+	\dfrac{\D V}{\D q_\alpha} &= 0
+\end{align}
+
+\subsection{d'Alembert's principle}
+
+\begin{align}
+	\sum^n_{i = 1} \left( \bm{F}_i - m_i \ddot{\bm{r}}_i\right) \cdot \delta \bm{r}_i = 0
+\end{align}
+
+\section{Lagrange Dynamics}
+
+\subsection{Lagrange's relations}
+
+	\begin{align}
+		\dfrac{\D \dot{\bm{r}} _i}{\D \dot{q} _\alpha} &= \dfrac{\D \bm{r} _i}{\D q_\alpha}\\
+		\dfrac{\D \dot{\bm{r}} _i}{\D q_\alpha} &= \dfrac{\mathrm{d}}{\mathrm{d}t} \left(\dfrac{\D \bm{r} _i}{\D q_\alpha}\right)
+	\end{align}
+
+\subsection{Lagrange's equation}
+
+\begin{align}
+	\dfrac{\mathrm{d}}{\mathrm{d}t} \left(\dfrac{\D T}{\D \dot{q_\alpha}}\right) - \dfrac{\D T}{\D q_\alpha} &= Q_\alpha = \sum^n_{i = 1} \bm{F}_i \cdot \dfrac{\D \bm{r}_i}{q_\alpha}\\
+	\dfrac{\mathrm{d}}{\mathrm{d}t} \left(\dfrac{\D L}{\D \dot{q_\alpha}}\right) - \dfrac{\D L}{\D q_\alpha} &= 0
+\end{align}
+
+\subsection{Generalized conservation law }
+
+	\begin{align}
+			\dfrac{\mathrm{d}}{\mathrm{d}t} \dfrac{\D L}{\D \dot{q_\alpha}}   &= \dfrac{\D L}{\D q_\alpha}
+	\end{align}
+
+\subsection{Jacobi's integral}
+
+	\begin{align}
+		h(q, \dot{q}, t) &= \sum^s_{\alpha = 1} \dot{p_\alpha} q_\alpha - L\\
+		\dfrac{\mathrm{d} h}{\mathrm{d} t} &= - \dfrac{\D L}{\D t}
+	\end{align}
+
+$ h $ is total mechanic energy when
+$ \dfrac{\D \bm{r}_i}{\D t} = 0 $
+
+\subsection{Noether's Theorem}
+
+If $L$ does not change under $q(t) \rightarrow Q(\epsilon, t)$, $I(q, \dot{q})$ is conserved.
+
+	\begin{align}
+		I(q, \dot{q}) = \left.p\dfrac{\mathrm{d} Q}{\mathrm{d} \epsilon}\right|_{\epsilon = 0}
+	\end{align}
+
+Where $p = \dfrac{\D L}{\D \dot{Q}}$.
+
+\section{Hamilton's Principle}
+
+\subsection{Hamilton's principle}
+
+	\begin{align}
+		\delta S &= \delta \int^{t_2}_{t_1} L(q, \dot{q}, t) \mathrm{d} t = 0\\
+		\delta S &= \int^{t_2}_{t_1} (\delta W + \delta T) \mathrm{d} t = 0
+	\end{align}
+	
+\subsection{Euler-Lagrange equations}
+
+	\begin{align}
+		\dfrac{\D f}{\D y} - \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\D f}{\D y'} &= 0\\
+		\dfrac{\mathrm{d}}{\mathrm{d} x}\left(f - \dfrac{\D f}{\D y'} y' \right) &= \dfrac{\D f}{\D x}
+	\end{align}
+
+\section{Central Force}
+
+\subsection{The Lagrange equation}
+
+	\begin{align}
+		L = \dfrac{1}{2} m \left(\dot{\rho}^2 + (\rho \dot{\theta})^2\right) - V(\rho)
+	\end{align}
+	
+\subsection{The integral of motion}
+
+	\begin{align}
+		h &= \rho^2\dot{\theta}\\
+		E &= \dfrac{1}{2} m \left(\dot{\rho}^2 + (\rho \dot{\theta})^2\right) + V(\rho)\\
+		&= \dfrac{1}{2} m \dot{\rho}^2 + \dfrac{mh^2}{2\rho^2} + V(\rho)\\
+		^*\bm{A} &= \bm{p} \times \bm{L} - km^2 \dfrac{\bm{\rho}}{\rho}
+	\end{align}
+
+\subsection{The equation of motion}
+	
+	\begin{align}
+		\theta:& \quad \dfrac{\d}{\d t} \left(\rho^2 \dot{\theta}\right) = 0\\
+		\rho:& \quad m(\ddot{\rho} - \rho \dot{\theta}^2) + \dfrac{\d V}{\d \rho} = 0\\
+		& \quad m(\ddot{\rho} - \dfrac{h}{\rho^3}) + \dfrac{\d V}{\d \rho} = 0
+	\end{align}
+
+\subsection{Binet's equation}
+
+	\begin{align}
+		F(u) &= -mh^2u^2\left(\dfrac{\d^2 u}{\d \theta^2} + u\right)\\
+		E(u) &= \dfrac{1}{2}mh^2\left[\left(\dfrac{\d u}{\d \theta}\right)^2 + u^2\right] + V\left(\dfrac{1}{u}\right)
+	\end{align}
+
+\subsection{Kepler problem}
+
+\subsubsection{Orbit}
+
+	\begin{align}
+		\rho &= \dfrac{p}{1 + e\cos\theta}\\
+		p &= \dfrac{h^2}{k}\\
+		a = \dfrac{p}{1 - e^2},&\quad
+		b = \dfrac{p}{\sqrt{1 - e^2}} 
+	\end{align}
+
+\subsubsection{Energy}
+	
+	\begin{align}
+		E = \dfrac{mk^2}{2h^2}(e^2 - 1) =
+		\left\{
+			\begin{aligned}
+				 -\dfrac{1}{2} \dfrac{mk}{\rho},& \quad \text{circular orbit}\\
+				 -\dfrac{mk}{2a},& \quad \text{eliptical orbit}\\
+				 0,& \quad \text{parabolic orbit}\\
+				 \dfrac{mk}{2a},& \quad \text{hyperbolic orbit}\\
+			\end{aligned}
+		\right.
+	\end{align}
+
+\subsection{Virial theorem}
+
+	\begin{align}
+		\langle T \rangle = -\dfrac{1}{2} \langle \sum_i \bm{F}_i \cdot \bm{r}_i \rangle
+	\end{align}
+	For two-body central force $F = -km\rho^n$, $\langle T \rangle = \dfrac{n + 1}{2} \langle V \rangle$.
+
+\subsection{Stability of circular orbit}
+
+	\begin{align}
+		\omega_\rho^2 &= \dfrac{3h^2}{\rho_0^4} - f'(\rho_0)\\
+		&= -\dfrac{3}{\rho_0}f(\rho_0) - f'(\rho_0)\\
+		&= 3\omega_\theta^2 - f'(\rho_0) > 0
+	\end{align}
+	\begin{align}
+		\dfrac{F'(\rho_0)}{F(\rho_0)} + \dfrac{3}{\rho_0} > 0
+	\end{align}
+	\begin{align}
+		\omega_\rho^2 = \dfrac{1}{m} \left.\dfrac{\d^2 V_{\text{eff}}(\rho)}{\d \rho^2}\right|_{\rho_0} > 0
+	\end{align}
+	
+\subsection{Scattering}
+
+\subsubsection{Scatter angle}
+
+	\begin{align}
+		\d \sigma &= \sigma(\delta) \d \Omega \\
+		&= - \dfrac{s}{\sin(\delta)}\dfrac{\d s}{\d \delta}\d \Omega
+	\end{align}
+
+\subsubsection{Rutherford's equation}
+	
+	\begin{align}
+		\sigma(E, \delta) = \dfrac{1}{4}\left(\dfrac{m k}{2 E}\right)^2 \csc^4\left(\dfrac{\delta}{2}\right)
+	\end{align}
+
+\end{multicols}
+
+\section{Miscellaneous}
+
+\begin{multicols}{2}
+	
+	Polar coordinates:
+	
+	\begin{align}
+	\left\{
+		\begin{aligned}
+			a_\rho &= \ddot{\rho} - \dot{\rho}\dot{\theta}^2\\
+			a_\phi &= 2\dot{\rho}\dot{\theta} +\rho\ddot{\theta}
+		\end{aligned}
+	\right.
+	\end{align}
+	
+	Natural coordinates:
+	
+	\begin{align}
+	\left\{
+		\begin{aligned}
+			a_t &= \dot{v}\\
+			a_n &= v\dot{\theta} = \dfrac{v^2}{R}
+		\end{aligned}
+	\right.
+	\end{align}
+	
+	Curvature and curvature radius:
+	
+	$$ \dfrac{1}{K} = R = \dfrac{\d S}{\d \theta}$$
+	
+\end{multicols}
+
+\end{document}

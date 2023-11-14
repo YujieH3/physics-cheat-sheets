@@ -1,0 +1,157 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, bm, extarrows}
+%\usepackage[none]{hyphenat}%prevent hyphenated words
+\usepackage{fancyhdr}
+\usepackage{graphicx, float}
+\usepackage{multicol}
+\usepackage{siunitx}
+
+\allowdisplaybreaks%允许公式换页
+
+\def\D{\partial}
+\def\d{\mathrm{d}}
+\def\epsilon{\varepsilon}
+\def\Phi{\varPhi}
+
+%opening
+\title{Electromagnetism Equations}
+\author{He Yujie}
+
+\begin{document}
+
+\maketitle
+
+\section{Biot-Savart's Law}
+
+	\begin{align}
+		\bm{B} = \dfrac{\mu_0}{4\pi} \oint \dfrac{I \mathrm{d} \bm{l} \times \bm{r}}{r^3}
+	\end{align}
+
+\section{Electromagnetic Force}
+
+\begin{multicols}{2}
+
+\subsection{Magnetic force}
+
+	\begin{align}
+		\bm{F}_\text{21} = \oint I_\text{2} \mathrm{d} \bm{l}_\text{2} \times \bm{B}_\text{2}
+	\end{align}
+
+\subsection{Electromagnetic force}
+
+	\begin{align}
+		\bm{F} = q \left(\bm{E} + \bm{v} \times \bm{B}\right)
+	\end{align}
+
+\end{multicols}
+
+\section{Dipoles}
+
+\begin{multicols}{2}
+
+\subsection{Electric dipoles}
+
+\begin{align}
+	\bm{p} &= 2q\bm{a}\\
+	\bm{M} &= \bm{p} \times \bm{E}\\
+	U &= - \bm{p} \cdot \bm{E} + C
+\end{align}
+
+\subsection{Magnetic dipoles}
+
+\begin{align}
+	\bm{\mu} &= I\bm{S}\\ 
+	\bm{M} &= \bm{\mu} \times \bm{E}\\
+	U &= - \bm{\mu} \cdot \bm{E} + C
+\end{align}
+
+\end{multicols}
+
+\section{Capacitance and Inductance}
+
+\begin{multicols}{2}
+
+\subsection{Capacitance}
+
+	\begin{align}
+		C &= \dfrac{q}{V} = \dfrac{\epsilon A}{d}\\
+		U &= \dfrac{1}{2}CV^2 = \dfrac{1}{2}\dfrac{1}{C}q^2\\
+		\left.F_x\right|_q &= -\left(\dfrac{\D U}{\D x}\right)_q\\
+		\left.F_x\right|_V &= \left(\dfrac{\D U}{\D x}\right)_V
+	\end{align}
+	
+\subsection{Inductance}
+	
+	\begin{align}
+		LI &= \Phi\\
+		L &= -\dfrac{\epsilon}{\left(\dfrac{\d I}{\d t}\right)}\\
+		U &= \dfrac{1}{2}LI^2
+	\end{align}
+	
+\end{multicols}
+
+\section{Maxwell Equations}
+
+\begin{multicols}{2}
+
+\subsection{Differential form}
+
+	\begin{align}
+		\nabla \cdot \bm{D} &= \rho_\text{free}\\
+		\nabla \times \bm{E} &= -\dfrac{\D \bm{B}}{\D t}\\
+		\nabla \cdot \bm{B} &= 0\\
+		\nabla \times \bm{H} &= \bm{j}_\text{free} + \dfrac{\D \bm{D}}{\D t}
+	\end{align}
+	
+\subsection{Intergral form}
+
+	\begin{align}
+		\oint \bm{D} \cdot \mathrm{d} \bm{S} &= q_\text{free}\\
+		\oint \bm{E} \cdot \mathrm{d} \bm{l} &= -\dfrac{\D }{\D t}\int \bm{B} \cdot \mathrm{d} \bm{S}\\
+		\oint \bm{B} \cdot \mathrm{d} \bm{S} &= 0\\
+		\oint \bm{H} \cdot \mathrm{d} \bm{l} &= I_\text{free} + \dfrac{\D }{\D t}\int \bm{D} \cdot \mathrm{d} \bm{S}
+	\end{align}
+	
+\end{multicols}
+
+
+\section{Energy of Electromagnetic Field}
+
+	\begin{align}
+		u_\text{e} &= \dfrac{1}{2} \bm{E} \cdot \bm{D} \left(= \dfrac{1}{2} \epsilon_0 E^2\right)\\
+		u_\text{m} &= \dfrac{1}{2} \bm{B} \cdot \bm{H} \left(= \dfrac{1}{2} \dfrac{1}{\mu_0} B^2\right)\\
+		\bm{S} &= \bm{E} \times \bm{H}\\
+		u &= \dfrac{1}{2}\left(\bm{E} \cdot \bm{D} + \bm{B} \cdot \bm{H}\right)
+	\end{align}
+
+\section{*Some Vector Analysis}
+
+	\begin{align}
+		\nabla \times (\phi \bm{f}) = \phi(\nabla \times \bm{f}) + (\nabla \phi) \times \bm{f}
+	\end{align}
+
+
+\section{Miscellaneous}
+
+	Electromotive force (emf): 
+	$$\epsilon = \oint \bm{E}\cdot\d \bm{l} = -\dfrac{\d \Phi}{\d t}$$
+	
+	Ohm's law ($\sigma$ being conductivity): 
+	$$\bm{J} = \sigma \bm{E},\quad R = \dfrac{1}{\sigma}\dfrac{L}{S}$$
+	
+	Constitutive relations for electric and magnetic vectors ($\chi$ being susceptibility, $\chi_m$ being magnetic susceptibility): 
+	$$\bm{D} = \epsilon_0\bm{E} + \bm{P} = \epsilon_0(1 + \chi)\bm{E} = \epsilon_0\epsilon_r\bm{E}$$ 
+	$$\bm{H} = \dfrac{1}{\mu_0}\bm{B} - \bm{M} = \dfrac{1}{\mu_0}\bm{B} - \chi_m \bm{H} = \dfrac{1}{\mu_0(1+\chi_m)}\bm{B} = \dfrac{1}{\mu_0\mu_r}\bm{B}$$
+
+	Speed of light, vacuum dielectric constant and vacuum magnetic permeability:
+	$$c^2 = \dfrac{1}{\epsilon_0\mu_0}$$
+	
+	Actual electromagnetic field:
+	$$\text{Re}\left(\bm{E}\right),\quad \text{Re}\left(\bm{B}\right)$$
+	\\
+	\\
+	\begin{center}
+		\textbf{Good luck, soldier.}
+	\end{center}
+\end{document}

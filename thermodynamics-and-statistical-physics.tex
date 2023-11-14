@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{multicol}
+
+% MATH
+\usepackage{amsmath, amssymb, physics}
+
+% CUSTOMIZED COMMANDS
+\newcommand{\p}{\partial}
+\newcommand{\La}{\mathcal{L}}
+
+\begin{document}
+
+Notation: $\beta = 1/k_BT$
+
+\begin{multicols}{2}
+
+Partition functions
+\begin{gather}
+    Z[j] := \int\dd{x} P(x) e^{-xj} \implies \langle x^n \rangle = (-1)^n \eval{\pdv[n]{Z[j]}{j}}_{j=0}
+\end{gather}
+
+\begin{gather}
+    Z = \sum_{\text{conf.}} e^{-\beta H} \implies \langle E \rangle = -\pdv{\log Z}{\beta}
+\end{gather}
+Sum over all possible states, $H$ being the Hamiltonian of each states.
+
+\end{multicols}
+
+\end{document}

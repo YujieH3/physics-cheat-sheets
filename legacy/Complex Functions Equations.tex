@@ -1,0 +1,272 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, bm, extarrows}
+%\usepackage[none]{hyphenat}%prevent hyphenated words
+\usepackage{fancyhdr}
+\usepackage{graphicx, float}
+\usepackage{multicol}
+\usepackage{siunitx}
+
+\allowdisplaybreaks%允许公式换页
+
+\def\D{\partial}
+\def\d{\,\mathrm{d}}
+\def\epsilon{\varepsilon}
+\def\Phi{\varPhi}
+\def\Arg{\mathrm{Arg}}
+\def\Res{\mathrm{Res}}
+\def\F{\mathfrak{F}}
+\def\L{\mathfrak{L}}
+
+%opening
+\title{Complex Functions Review}
+\author{He Yujie}
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+
+\section{Complex Functions}
+	
+	\subsection{Derivability}
+		
+		\subsubsection{Cauchy-Riemann Equation}
+			
+			For derivable $f(z) = u(x,y) + iv(x,y)$
+			\begin{align}
+				\dfrac{\D u}{\D x} = \dfrac{\D v}{\D y},\quad
+				\dfrac{\D v}{\D x} = - \dfrac{\D u}{\D y}
+			\end{align}
+			
+			C-R condition in polar coordinates	
+			\begin{align}
+				\dfrac{\D u}{\D \rho} = \dfrac{1}{\rho} \dfrac{\D v}{\D \phi},\quad
+				\dfrac{\D v}{\D \rho} = - \dfrac{1}{\rho} \dfrac{\D u}{\D \phi}
+			\end{align}
+		
+		\subsubsection{Necessary and sufficient conditions for derivability}
+			
+			$f(z) = u(x,y) + iv(x,y)$ is derivable iff		
+			\begin{align}
+				\dfrac{\D u}{\D x}, \dfrac{\D u}{\D y}, \dfrac{\D v}{\D x}, \dfrac{\D v}{\D y}
+			\end{align}
+			
+			exist, continuous, and satisfy C-R conditions.
+		
+	\subsection{Analytic Functions}
+	
+		$f(z)$ is analytic at $z_0$ iff $f(z)$ is derivable at $z_0$ and everywhere in its neighbourhood. $f(z)$ is analytic in $B$ iff $f(z)$ is analytic everywhere in $B$. The following properties are the results of C-R equations holding everywhere.
+		
+		\subsubsection{Prop 1 Orthogonal Curves}
+			
+			Curve $u(x,y) = C_1$ is perpendicular to curve $v(x,y) = C_2$ everywhere. For $\nabla u \cdot \nabla v = 0$.
+		
+		\subsubsection{Prop 2 Conjugate Harmonic Functions}
+			
+			``conjugate'' stands for C-R conditions and ``harmonic'' for following eqs	
+			\begin{align}
+				\nabla^2 u &= \dfrac{\D^2 u}{\D x^2} + \dfrac{\D^2 u}{\D y^2} = 0\\
+				\nabla^2 v &= \dfrac{\D^2 v}{\D x^2} + \dfrac{\D^2 v}{\D y^2} = 0
+			\end{align}
+		
+	\subsection{Integration of Complex Functions}
+	
+		\subsubsection{Cauchy Integral Theorem}
+		
+			If $f(z)$ is single-valued and analytic in simply connected closed region $\bar{B}$, then for any piecewise smooth closed loop $c$ in $\bar{B}$			
+			\begin{align}
+				\oint_c f(z) \d z = 0
+			\end{align}
+		
+			Corr: The condition can be expanded to $f(z)$ being analytic in simply connected region $B$ and continuous on closed simply connected region $\bar{B}$.
+		
+		\subsubsection{Cauchy Integral Formula}
+		
+			For $f(z)$ analytic in $\bar{B}$, $l$ being the bound of $\bar{B}$, $\alpha \in \bar{B}$
+			\begin{align}
+				f(\alpha) = \dfrac{1}{2\pi i}\oint_l \dfrac{f(z)}{z - \alpha}\d z
+			\end{align}
+			
+			Corr 1:
+			\begin{align}
+				f(z) = \dfrac{1}{2\pi i}\oint_{l^-} \dfrac{f(z)}{z - \alpha}\d z + f(\infty)
+			\end{align}
+			Corr 2:
+			\begin{align}
+				f'(z) &= \dfrac{1}{2\pi i}\oint_l \dfrac{f(z)}{(z - \alpha)^2}\d z\\
+				f^{(n)}(z) &= \dfrac{n!}{2\pi i}\oint_l \dfrac{f(z)}{(z - \alpha)^{n+1}}\d z
+			\end{align}
+		
+	\section{Power Series}
+		
+		\subsection{Convergence Criteria}
+		
+			\subsubsection{Cauchy Criteria}
+			If $\forall \epsilon > 0$, $\exists N$ s.t. when $n > N$, $\displaystyle\left|\sum_{k=n+1}^{n+p}w_k\right| < \epsilon$, $\forall p \in \mathbb{Z}^+$, then $\displaystyle \sum_{k = 1}^{\infty}w_k$ converges and vice versa.
+			
+			\subsubsection{Weierstrass Criteria}
+			For $\displaystyle \sum_{k = 1}^{\infty}w_k(z)$, if $\exists \displaystyle \sum_{k=1}^{\infty}m_k$(positive constant series) s.t. $\forall z \in B$, $|w_k(z)| \leq m_k$. Then $\displaystyle \sum_{k = 1}^{\infty}w_k(z)$ converges absolutely and uniformly if $\displaystyle \sum_{k=1}^{\infty}m_k$ converges.
+			
+			\subsubsection{D'Alembert's Ratio Test}
+			$\displaystyle \sum_{k = 1}^{\infty}w_k$ converges absolutely if $\lim\limits_{k\rightarrow\infty}\dfrac{|w_{k+1}|}{|w_k|} < 1$. 
+			
+			Power series $\lim\limits_{k\rightarrow\infty}\dfrac{|a_{k+1}|}{|a_k|}|z-z_0| < 1$
+			
+			Convergence radius: $R = \lim\limits_{k\rightarrow\infty}\dfrac{|a_k|}{|a_{k+1}|}$
+			
+			\subsubsection{Cauchy's Root Test}
+			$\displaystyle \sum_{k = 1}^{\infty}w_k$ converges absolutely if $\lim\limits_{k\rightarrow\infty}\sqrt[k]{|w_k|} < 1$.
+			
+			Power series: $\lim\limits_{k\rightarrow\infty}\sqrt[k]{|a_k||z-z_0|^k} < 1$
+			
+			Convergence radius: $R = \lim\limits_{k\rightarrow\infty}\dfrac{1}{\sqrt[k]{|a_k|}}$
+			
+		\subsection{Taylor Expansion}
+		
+		For $f(z)$ analytic in $|z-z_0| < R$
+		\begin{align}
+			f(z) &= \sum_{k=0}^{\infty}a_k(z - z_0)^k,\\
+			a_k &= \dfrac{1}{2\pi i}\oint_C \dfrac{f(z)}{(z-z_0)^{k+1}}\d z = \dfrac{f^{(k)}(z_0)}{k!}
+		\end{align}
+		
+		\subsection{Laurent Expansion}
+		
+		For $f(z)$ analytic in $R_1 < |z-z_0| < R_2$
+		\begin{align}
+			f(z) &= \sum_{k=-\infty}^{\infty}a_k(z-z_0)^k,\\
+			a_k &= \dfrac{1}{2\pi i}\oint_C \dfrac{f(z)}{(z-z_0)^{k+1}}\d z 
+		\end{align}
+	
+\section{The Residue Theorem}
+
+	\subsection{The Residue Theorem}
+		
+		For $f(z)$ analytic in $\bar{B}$ except finite isolated singularity $b_j$
+		\begin{align}
+			\oint_l f(z)\d z = 2\pi i \sum_{j=1}^{n}\Res f(b_j)
+		\end{align}
+	
+	\subsection{Getting Residues}
+	
+		\subsubsection{Calculating Limits}
+		1st order singularity
+		\begin{align}
+			\Res f(z_0) = \lim\limits_{z\rightarrow z_0}(z-z_0)f(z)
+		\end{align}
+		k-th order singularity
+		\begin{align}
+			\exists \lim\limits_{z\rightarrow z_0}(z-z_0)^k f(z) = M, 0<M<\infty\\
+			Res f(z_0) = \dfrac{1}{(k-1)!}\lim\limits_{z \rightarrow z_0}\dfrac{\d^{(k-1)} }{\d z^{(k-1)}}\left[(z-z_0)^kf(z)\right]
+		\end{align}
+		\subsubsection{Laurent expansion}
+		$a_{-1}$ of Laurent expansion
+	
+\section{Fourier Transformation}
+
+	\subsection{Fourier Series}
+	\begin{align}
+		f(x) &= a_0 + \sum_{k=1}^{\infty}(a_k\cos{\dfrac{k\pi x}{l}} + b_k\sin{\dfrac{k\pi x}{l}})\\
+		&\left\{\begin{aligned}
+			a_0 &= \dfrac{1}{2l}\int_{-l}^{l}f(x)\d x\\
+			a_k &= \dfrac{1}{l}\int_{-l}^{l}f(x)\cos{\dfrac{k\pi x}{l}}\d x\\
+			b_k &= \dfrac{1}{l}\int_{-l}^{l}f(x)\sin{\dfrac{k\pi x}{l}}\d x
+		\end{aligned}\right.
+	\end{align}
+	Complex form:
+	\begin{align}
+		f(x) &= \sum_{k=-\infty}^{\infty}c_ke^{i\dfrac{k\pi x}{l}}\\
+		c_k &= \dfrac{1}{2l}\int_{-l}^{l}f(z)e^{-i\dfrac{k\pi x}{l}}\d x
+	\end{align}
+
+	\subsection{Fourier Transform}
+	
+		\subsubsection{Fourier Integral}
+		\begin{align}
+			f(t) = &\int_0^\infty A(\omega)\cos{\omega t}\d \omega + \int_0^\infty B(\omega)\sin{\omega t}\d \omega\\
+			&\left\{\begin{aligned}
+				A(\omega) &= \dfrac{1}{\pi}\int_{-\infty}^\infty f(t)\cos{\omega t}\d t\\
+				B(\omega) &= \dfrac{1}{\pi}\int_{-\infty}^\infty f(t)\sin{\omega t}\d t
+			\end{aligned}\right.
+		\end{align}
+	
+		\subsubsection{Fourier Transform(Complex Form)}
+		\begin{align}
+			f(t) &= \int_{-\infty}^{\infty}F(\omega)e^{iwt}\d\omega\\
+			F(\omega) &= \dfrac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{-iwt}\d t
+		\end{align}
+		
+		\subsubsection{Properties}
+		\begin{align}
+			\F[f'(t)] &= i\omega\tilde{f}(\omega)\\
+			\F[\int^{(t)}f(t)\d t] &= \dfrac{1}{i\omega}\tilde{f}(\omega)\\
+			\F[f(at)] &= \dfrac{1}{a}\tilde{f}\left(\dfrac{\omega}{a}\right)\\
+			\F[f(t-t_0)] &= e^{-i\omega t_0}\tilde{f}(\omega)\\
+			\F[e^{i\omega t}f(t)] &= f(\omega-\omega_0)\\
+			\F[f_1(t)*f_2(t)] &= 2\pi \tilde{f}_1(\omega) \tilde{f}_2(\omega), \\
+			f_1(t)*f_2(t) &= \int_{-\infty}^{\infty}f_1(\tau)f_2(t-\tau)\d\tau
+		\end{align}
+	
+		\subsubsection{Higher Dimensions}
+		\begin{align}
+			f(\bm{r}) &= \int_{-\infty}^\infty F(\bm{k}) e^{i\bm{k}\cdot\bm{r}}\d\bm{k}\\
+			F(\bm{k}) &= \dfrac{1}{(2\pi)^n}\int_{-\infty}^\infty f(\bm{r}) e^{-i\bm{k}\cdot\bm{r}}\d\bm{r}
+		\end{align}
+	
+	\subsection{$\delta$ Function}
+	3 approximations with normal functions
+		\begin{align}
+			\delta(x) &= \lim\limits_{l\rightarrow0}\dfrac{1}{l}\mathrm{rect}\left(\dfrac{x}{l}\right)\\
+			\delta(x) &= \lim\limits_{K\rightarrow\infty}\dfrac{1}{\pi}\dfrac{\sin Kx}{x}\\
+			\delta(x) &= \lim\limits_{\epsilon\rightarrow0}\dfrac{1}{\pi}\dfrac{\epsilon}{\epsilon^2 + x^2}
+		\end{align}
+	Higher Dimensions
+		\begin{align}
+			\delta(x,y,z) &= \delta(x)\delta(y)\delta(z)\\
+			\delta(r,\theta,\phi) &= \dfrac{1}{r^2\sin\theta}\delta(r)\delta(\theta)\delta(\phi)
+		\end{align}
+	
+\section{Laplace Transform}
+
+	\subsection{Laplace Transform}
+		\begin{align}
+			\bar{f}(p) &= \int_{0}^{\infty}f(t)e^{-pt}\d t\\
+			f(t) &= \dfrac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma-i\infty}\bar{f}(p)e^{pt}\d p\\
+			&= \sum_{\mathrm{Re}\,p<a} \Res[\bar{f}(p)e^{pt}]
+		\end{align}
+	
+	\subsection{Properties}
+		\begin{align}
+			\L[f'(t)] &= p\bar{f}(p) - f(0)\\
+			\L[\int^t_0f(t)\d t] &= \dfrac{1}{p}\bar{f}(p)\\
+			\L[f(at)] &= \dfrac{1}{a}\bar{f}\left(\dfrac{p}{a}\right)\\
+			\L[f(t-t_0)] &= e^{-p t_0}\bar{f}(p)\\
+			\L[e^{-\lambda t}f(t)] &= f(p + \lambda)\\
+			\L[f_1(t)*f_2(t)] &= \bar{f}_1(p) \bar{f}_2(p), \\
+			f_1(t)*f_2(t) &= \int_{0}^{\infty}f_1(\tau)f_2(t-\tau)\d\tau
+		\end{align}
+		
+\section{Miscellaneous}
+	
+	\subsection{Useful Taylor/Laurent expansions}
+		\begin{align}
+			\dfrac{1}{1-z} &= \sum_{k=0}^{\infty}z^k = 1 + z + z^2 + \cdots, |z|<1\\
+			e^z &= \sum_{k=0}^{\infty}\dfrac{z^k}{k!} = 1 + z + \dfrac{1}{2}z^2 + \cdots, |z|<\infty\\
+			\sin z &= \sum_{k=1}^{\infty}(-1)^{k+1}\dfrac{z^{2k+1}}{(2k+1)!} = \dfrac{z}{1!} - \dfrac{z^3}{3!} + \dfrac{z^5}{5!} \cdots\\
+			\cos z &= \sum_{k=0}^{\infty}(-1)^k\dfrac{z^{2k}}{(2k)!} = 1 - \dfrac{z^2}{2!} + \dfrac{z^4}{4!} \cdots
+		\end{align}
+	
+	\subsection{Basic Laplace Transformations}
+		\begin{align}
+			\L[1] &= \dfrac{1}{p}\\
+			\L[t^n] &= \dfrac{n!}{p^{n+1}}\\
+			\L[e^{st}] &= \dfrac{1}{p-s}\\
+			\L[t^nf(t)] &= (-1)^n \dfrac{\d^n}{\d p^n} \bar{f}(p)\\
+			\L[\sin\omega t] &= \dfrac{\omega}{p^2 + \omega^2}\\
+			\L[\cos\omega t] &= \dfrac{p}{p^2 + \omega^2}
+		\end{align}
+		
+\end{multicols}
+
+\end{document}

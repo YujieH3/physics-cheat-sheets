@@ -1,0 +1,303 @@
+\documentclass[10.5pt, a4paper, oneside]{article}
+\usepackage[margin=.7in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, bm, extarrows}
+%\usepackage[none]{hyphenat}%prevent hyphenated words
+\usepackage{graphicx, float}
+\usepackage{multicol}
+\usepackage{siunitx}
+
+\allowdisplaybreaks%允许公式换页
+\def\D{\partial}
+
+\setcounter{tocdepth}{1}
+
+\numberwithin{equation}{section}%mark: niubi
+
+\begin{document}
+
+%------------------------------------
+
+%------------------------------------
+
+
+\section{Special Relativity}
+
+\begin{multicols}{2}
+
+\begin{enumerate}
+	\item Lorentz transformation
+		\begin{align}
+		&\left\{\begin{aligned}
+		x' &= \gamma (x - u t)\\
+		y' &= y\\
+		z' &= z\\
+		t' &= \gamma (t - \dfrac{u}{c^2}x)
+		\end{aligned}\right.
+		\\
+		&\left\{\begin{aligned}
+		x &= \gamma (x' + u t')\\
+		y &= y'\\
+		z &= z'\\
+		t &= \gamma (t' + \dfrac{u}{c^2}x')
+		\end{aligned}\right.
+		\end{align}
+	\item Effects of relativity
+		\begin{enumerate}
+			\item time dilation
+			\begin{align}
+				\Delta t = \gamma\Delta t'
+			\end{align}
+			\item Lorentz contraction
+			\begin{align}
+				\Delta x = \dfrac{\Delta x'}{\gamma}
+			\end{align}
+			\item Laue's cylinder
+			\begin{align}
+				\Delta t = \dfrac{u}{c^2}\Delta x'
+			\end{align}
+			\item optical Doppler effect\\
+			separating (redshift)
+			\begin{align}
+				\nu = \sqrt{\dfrac{1 - \beta}{1 + \beta}}\nu_0
+			\end{align}
+			approaching (blueshift)
+			\begin{align}
+				\nu = \sqrt{\dfrac{1 + \beta}{1 - \beta}}\nu_0
+			\end{align}
+			\item relativity of simutaneity
+			\begin{align}
+				\Delta t' &= \gamma (\Delta t - \dfrac{u}{c^2}\Delta x) \nonumber\\
+				&= -\gamma\dfrac{u}{c^2}\Delta x
+			\end{align}
+			\item causality
+			\begin{align}
+				\Delta t' &= \gamma (\Delta t - \dfrac{u}{c^2}\Delta x) \nonumber\\
+				&= \gamma \Delta t (1 - \dfrac{vu}{c^2})\\
+				vu &< c^2\nonumber
+			\end{align}
+			note: where $v$ is signal speed in $S$-frame, $u$ is speed of $S'$ relative to $S$.
+		\end{enumerate}
+	\item Spacetime diagram
+		\begin{align}
+			\tan\theta &= \beta < 1\\
+			``1'' &= \dfrac{\gamma}{\cos\theta} = \dfrac{1 + \beta^2}{1 - \beta^2}
+		\end{align}
+	\item Relativistic kinematics
+		\begin{align}
+			\left\{\begin{aligned}
+			v'_x &= \dfrac{v_x - u}{1 - v_x\dfrac{u}{c^2}}\\
+			v'_y &= \dfrac{v_y}{\gamma(1 - v_x\dfrac{u}{c^2})}\\
+			v'_z &= \dfrac{v_z}{\gamma(1 - v_x\dfrac{u}{c^2})}\\
+			\end{aligned}\right.
+		\end{align}
+	\item Relativistic dynamics
+		\begin{enumerate}
+			\item mass \& energy
+				\begin{align}
+					E &= m(v)c^2\\
+					E &= K + E_0\\
+					m &= \gamma m_0
+				\end{align}
+			\item momentum
+				\begin{align}
+					\bm{p} = \gamma m_0 \bm{v}
+				\end{align}
+			\item mass energy-momentum relation
+				\begin{align}
+					E &= \sqrt{c^2 p^2 + m_0^2 c^4}
+				\end{align}
+				for particle $m_0 = 0$\\
+				(e.g. photon and neutrino)
+				\begin{align}
+					E &= cp
+				\end{align}
+		\end{enumerate}
+\end{enumerate}
+
+\end{multicols}
+
+\section{Temperature}
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item Equilibrium State
+			\begin{center}
+					\begin{tabular}{|c|c|}
+					\hline
+					system & exchange \\
+					\hline
+					isolated & $\times$ \\
+					\hline
+					closed & energy \\
+					\hline
+					open & mass \& energy \\
+					\hline
+				\end{tabular}
+			\end{center}
+		\item Thermodynamics and temperature
+		\paragraph{The zeroth law of thermodynamics}
+		\textit{Two systems, each in thermal equilibrium with a third (thermometer) are in thermal equilibrium with each other.}
+		\item Empirical temperature scales
+		\begin{enumerate}
+			\item ideal gas scale
+				\begin{align}
+					T = \SI{273.16}{K}\lim\limits_{p_{tr}\rightarrow 0}\left(\dfrac{p}{p_{tr}}\right)
+				\end{align}
+			\item Celsius t
+				\begin{align}
+					T_C = T_{\text{idealgas}} - 273.15
+				\end{align}
+			\item Fahrenheit
+				\begin{align}
+					T_F = 32^{\circ} + \dfrac{9}{5}T_C
+				\end{align}
+		\end{enumerate}
+		\item Equation of state
+			\begin{align}
+				V &\approx V_0(1 + \alpha_V\Delta T - \kappa_T\Delta p)
+				\\
+				pV &= nRT
+			\end{align}
+			\begin{enumerate}
+				\item coefficient of thermal expansion
+				\begin{align}
+					\alpha_l &= \dfrac{1}{L}\left(\dfrac{\D L}{\D T}\right)_p
+					\\
+					\alpha_V &= \dfrac{1}{V}\left(\dfrac{\D V}{\D T}\right)_p = 3\alpha_l
+				\end{align}
+				\item Isothermal compressibility
+				\begin{align}
+					\kappa_T = -\dfrac{1}{V}\left(\dfrac{\D V}{\D p}\right)_T
+				\end{align}
+			\end{enumerate}
+	\end{enumerate}
+\end{multicols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The First Law of Thermodynamics}
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item Internal energy function
+			\begin{align}
+				\Delta U = U_B - U_A \equiv W_{BA}
+			\end{align}
+		\item Heat and the first law of thermodynamics
+			\begin{enumerate}
+				\item heat released by the surrounding system
+					\begin{align}
+						Q \equiv U_f - U_i -W
+					\end{align}
+				\item the first law of thermodynamics
+					\begin{align}
+						\Delta U = W + Q
+					\end{align}
+			\end{enumerate}
+		\item Heat capacity and specific heat
+			\begin{enumerate}
+				\item heat capacity
+				\begin{align}
+					C &= \dfrac{1}{m}\lim\limits_{\Delta T \rightarrow 0}\dfrac{\Delta Q}{\Delta T}
+					\\
+					C_V &= \left(\dfrac{\D U}{\D T}\right)
+					\\
+					C_p &= 
+					\left\{\begin{aligned}
+					& \left(\dfrac{\D U}{\D T}\right)_p + p\left(\dfrac{\D V}{\D T}\right)_p
+					\\
+					& \left.\dfrac{\D(U + pV)}{\D T}\right|_p \equiv \left(\dfrac{\D H}{\D T}\right)_p
+					\end{aligned}\right.\\
+					C_p &= C_v + nR\\
+					C_V &= \dfrac{nR}{\gamma - 1}\\
+					C_p &= \dfrac{\gamma nR}{\gamma - 1}
+				\end{align}
+				\textit{where H is enthalpy.}
+				\item ratio of specific heat
+				\begin{align}
+					\gamma = \dfrac{C_p}{C_v}
+				\end{align}
+			\end{enumerate}
+		\item Adiabatic Equation
+		\begin{align}
+			pV^\gamma &= C\\
+			TV^{\gamma - 1} &= C
+		\end{align}
+		\item The Carnot Cycle
+		\begin{align}
+			\eta &= 1 + \dfrac{\Delta Q_{34}}{\Delta Q_{12}} \equiv 1 - \dfrac{Q_2}{Q_1}
+			\\
+			\eta &= 1 - \dfrac{T_2}{T_1}
+		\end{align}
+	\end{enumerate}
+\end{multicols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Second Law of Thermomdynamics}
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item The Second Law
+			\\
+			\textbf{Kelvin-Planck statement:}
+			No process is possible whose \textbf{sole result} is the absorption from a reservoir and the conversasion of this heat into work.
+			\\
+			\textbf{Clausius statement:}
+			No process is possible whose \textbf{sole result} is the transfer of heat from a cooler to a hotter body.
+		\item Carnot Theorem and Thermodynamic Scale
+			\begin{align}
+				\eta_A &\leqslant \eta_R
+				\\
+				\tau = \SI{273.16}{K}\dfrac{Q}{Q_\text{tr}} &\equiv \SI{273.16}{K}\dfrac{T}{T_\text{tr}}
+			\end{align}
+		\item Entropy and Entropy Principle
+		\begin{align}
+			dS \geqslant \dfrac{\bar{d}Q}{T}
+		\end{align}
+			\begin{enumerate}
+				\item entropy of ideal gas
+				\begin{align}
+					S = C_V\ln{T} + nR\ln{V} + S_0
+				\end{align}
+				\item entropy of a reservoir
+				\begin{align}
+					\Delta S = \dfrac{\Delta Q}{T}
+				\end{align}
+				\item quasi-static process
+				\begin{align}
+					\Delta S = \int^{(f)}_{(i)}\dfrac{\bar{d}Q}{T}
+				\end{align}
+				\item irreversible process\\
+					Find reversible process. e.g. isothermal process.
+			\end{enumerate}
+		\item Thermodynamic potentials*
+			\begin{align}
+				U &= TS -PV + \mu n\\
+				G &= \mu n\\
+				dU &= TdS - pdV + \mu dn\\
+				dH &= TdS + Vdp + \mu dn\\
+				dF &= -SdT - pdV + \mu dn\\
+				dG &= -SdT + Vdp + \mu dn
+			\end{align}
+			Gibbs-Duheim equation
+			\begin{align}
+				d\mu = -S_m dT + V_m dp
+			\end{align}
+	\end{enumerate}
+\end{multicols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Microscopic Model for Ideal Gas}
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item Three characteristic speed
+			\begin{align}
+				v_m &= \sqrt{\dfrac{2k_BT}{m}}=1.41\dfrac{k_BT}{m}
+				\\
+				\bar{v} &= \sqrt{\dfrac{8k_BT}{\pi m}}=1.59\dfrac{k_BT}{m}
+				\\
+				\bar{v} &= \sqrt{\dfrac{3k_BT}{m}}=1.73\dfrac{k_BT}{m}
+			\end{align}
+		\item Maxwell velocity distribution
+		\item Speed distribution
+		\item Equipartition theorem
+		\item Effusion
+		\item Transport phenomena
+	\end{enumerate}
+\end{multicols}
+
+
+\end{document}

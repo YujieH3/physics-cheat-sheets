@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{multicol}
+
+% MATH
+\usepackage{amsmath, amssymb, physics}
+\usepackage{tensor}
+
+% CUSTOMIZED COMMANDS
+\newcommand{\p}{\partial}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\ra}{\rightarrow}
+
+\begin{document}
+
+\begin{multicols}{2}
+Notations and convensions:
+Einstein summation rules. Sign convension $(+---)$. Minkowski space. D'Alembert symbol $\Box = \partial_\mu\partial^\nu = \partial_t^2 - \nabla^2$.
+
+Euler-Lagrange equation for fields
+\begin{gather}
+    \pdv{\La}{\phi^a} - \p_\mu\pdv{\La}{\p_\mu \phi^a} = 0
+\end{gather}
+
+Klein-Gordon equation is the equation of motion of (\ref{eq:real-scalar-field})
+\begin{gather}
+    (\square - m^2)\phi = 0
+\end{gather}
+
+\paragraph{Noether's theorem} For each continuous infinitesimal \textbf{global} symmetry (transformation) $\phi^a \rightarrow \phi^a + \delta \phi^a \implies \La \rightarrow \La + \partial_{\mu}B^\mu$, there is a conserved current\footnote{Remember the first term is summed over all fields $\phi^a$.}
+\begin{gather}
+    J^\mu = \pdv{\La}{\partial_\mu\phi^a}\delta\phi^a - B^\mu
+\end{gather}
+such that $\partial_\mu J^\mu = 0$ and $Q = \int \dd[3]{x} J^0$ is a conserved quantity.
+
+As a result, if an action is invariant under a constant global spacetime transformation $x^\mu \ra x^\mu + \epsilon^\mu$
+\begin{gather}
+    T^{\mu\nu} := - \pdv{\La}{\partial_\mu\phi^a} \partial^\nu \phi^a + \eta^{\mu\nu}\mathcal{L} ,\quad \partial_{\mu } T^{\mu\nu} = 0\\
+    \qq{or} T^\mu_\nu = T^{\mu\rho}\eta_{\rho\nu} = - \pdv{\La}{\partial_\mu\phi^a} \partial_\nu \phi^a + \delta^\mu_\nu\mathcal{L} ,\quad \partial_\mu T^\mu_\nu = 0
+\end{gather}
+
+Generating function for quantum field theory
+\begin{gather}
+\mathcal{Z}[J] = \mathcal{N} \int\mathcal{D}\phi e^{-S_E[\phi] - \int\dd[4]{x}J(x)\phi(x)} \quad \mathcal{D} \phi = \prod_i \dd{\phi(x_{i})}
+\end{gather}
+
+\end{multicols}
+
+Global symmetries
+\begin{align}
+    \text{Constant shift}& \quad \psi \ra \psi + \delta \psi\\
+    \text{Spacetime translation}& \quad x^{\mu} \ra x^{\mu} + \epsilon^{\mu}, \delta \phi = \epsilon^{\mu}\partial_\mu\phi, \delta\La = \partial_\mu(\epsilon^{\mu}\La) = \partial_\mu B^{\mu} \implies J^\mu = \pdv{\La}{\partial_{\mu}\phi^{a}}\epsilon^{\nu}\partial_{\nu}\phi^a - \epsilon^{\mu}\La\\
+    & \qq{Time translation invariance} \implies \dv{}{t}E = \partial_t\int\dd[3]x\mathcal{H} = 0 \qas \mathcal{H} = \pdv{\mathcal{L}}{\partial_t\phi}\partial_t\phi - \mathcal{L}\\
+    & \qq{Space translation invariance} \implies \dv{}{t}\vec P = \partial_t\int \dd[3]{x} \pdv{\mathcal{L}}{\partial_t\phi}\nabla\phi = 0\\
+    \text{Phase transformation}& \quad \psi \ra \psi e^{i\alpha}, \delta\psi = i\alpha\psi\\
+    \text{Rotation}& \quad (\psi^a, \psi^b)^\top \ra R(\alpha)(\psi^a, \psi^b)^\top\\
+    \text{Gauge transformation}& \quad A_\mu \ra A_\mu + \partial_\mu \alpha\\
+    \text{Lorentz transformation}& \quad x^\mu \ra \Lambda\indices{^\mu_\nu} x^\nu, \psi^\mu \ra \Lambda\indices{^\mu_\nu} \psi^\nu, \quad t'=\gamma(t-vx), x' = \gamma(x-vt), \gamma=\frac{ 1}{\sqrt{1-v^2}}
+\end{align}
+
+Actions
+\begin{align}
+    \qq{Real scalar field} &
+    S = \int\dd[4]{x} \qty[-\frac{ 1}{2}\partial_\mu\phi\partial^{\mu}\phi - \frac{m^2}{2}\phi^2] = \int\dd[4]{x} \qty[\frac{ 1}{2}\phi\partial_\mu\partial^{\mu}\phi - \frac{m^2}{2}\phi^2]\label{eq:real-scalar-field}\\
+    \qq{Electrodynamics} &
+    S = \int\dd[4]{x} \qty[-\frac{1}{4}F^{\mu\nu}F_{\mu\nu}] \implies \pdv{\La}{\partial_\mu A_\nu} = -F^{\mu\nu},\,\text{EOM}\, \partial_\mu F^{\mu\nu} = 0\\
+    \qq{Quantum electrodynamics} &
+    S = \int\dd[4]{x} \qty[-(D_{\mu }\psi )^*(D_{\mu }\psi ) - m^2 \psi ^*\psi - \frac{1}{4}F^{\mu \nu }F_{\mu \nu }]\\
+    & \qq{Covariant derivative} D_{\mu } := \partial_{\mu } + ieA_{\mu }
+\end{align}
+
+Maths
+\begin{gather}
+\int^\infty_\infty\dd{x}e^{-ax^{2}+cx} = \sqrt{\frac{\pi}{a}}e^{\frac{c^2}{4a}}\\
+\int^\infty_\infty\dd{x}e^{-(x,Ax)+(c,x)} = \frac{\pi^{\frac{N}{2}}}{\sqrt{\det A}} e^{\frac{1}{4}(c,A^{-1}c)}
+\end{gather}
+
+Misc
+\begin{gather}
+    F_{\mu\nu} = \partial_\mu A_\nu - \partial_{\nu}A_\mu,\qq{in cartisian coordinates} F_{0i} = -E_i, F_{ij} = \epsilon_{ijk}B^{k}\\
+    R(\theta) = \mqty(\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta)\,\quad \Lambda\indices{^{\mu}_\nu} = \mqty(\gamma & -\gamma v \\ -\gamma v & \gamma)\,\quad
+    \Lambda\indices{_{\mu}^\nu} = \mqty(\gamma & \gamma v \\ \gamma v & \gamma) = (\Lambda^{-1})\indices{^{\mu}_\nu}
+\end{gather}
+
+\end{document}

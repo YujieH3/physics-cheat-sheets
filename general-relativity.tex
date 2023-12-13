@@ -2,7 +2,106 @@
 
 \begin{document}
 
+Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
+
+\begin{center}
+\begin{tikzpicture}
+\path (0,0) node [rectangle, draw, align=center, below](field-eq) { % rectangle, draw to draw a box aroung the whole node
+    Einstein's Equation\\
+    $R_{\mu\nu} + \dfrac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}$\\
+    or $R_{\mu\nu} = 8\pi G \qty(T_{\mu\nu} - \frac{1}{2} Tg_{\mu\nu})$
+    }
+    (0,8) node [align=center, below](cov-d) {
+    Covariant Derivative\\
+    $\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma\indices{_\mu^\nu_\rho} V^\rho$\\
+    $\nabla_\mu \omega_\nu = \partial_\mu \omega_\nu + \Gamma\indices{_\mu^\rho_\nu} \omega_\rho$
+    }
+    (6,7) node [align=center, below](christoffel) {
+    Christoffel Connection\\
+    $\Gamma\indices{_\mu^\sigma_\nu} = \frac{1}{2} g^{\sigma\rho}(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\rho\mu} - \partial_\rho g_{\mu\nu})$
+    }
+    (-5,7) node [align=center,below](parallel-transport) {
+    Parallel Transport\\
+    $\displaystyle \frac{D}{\mathrm{d}\lambda}V^\mu \equiv \dv{x^\rho}{\lambda} \nabla_\rho V^{\mu} = 0$
+    }
+    (-5,5) node [align=center,below](geodesics-eq) {
+    Geodesics Equation\\
+    $\displaystyle \dv[2]{x^\sigma}{\lambda} + \Gamma\indices{_\mu^\sigma_\nu}\dv{x^\mu}{\lambda}\dv{x^\nu}{\lambda} = 0$
+    }
+    (6,5) node [align=center,below] (riemann) {
+    Riemann Tensor\\
+    $\displaystyle R\indices{^\rho_{\sigma\mu\nu}} = \partial_\mu \Gamma\indices{_\nu^\rho_\sigma} + \Gamma\indices{_\mu^\rho_\lambda}\Gamma\indices{_\nu^\lambda_\sigma}
+    - \partial_\nu \Gamma\indices{_\mu^\rho_\sigma} - \Gamma\indices{_\nu^\rho_\lambda}\Gamma\indices{_\mu^\lambda_\sigma}$
+    }
+    (6,3.5) node [align=left, below] (ricci) {
+    Ricci Tensor $\displaystyle R_{\mu\nu} = R\indices{^\rho_{\mu\rho\nu}}$\\
+    Ricci Scalar $\displaystyle R = R\indices{^\mu_\mu} = g^{\nu\mu}R_{\mu\nu}$
+    }
+    
+; % Don't remove this semicolon
+
+% This is for reference only.
+% \draw[->, black] (cov-d) .. controls +(right:1cm) and +(up:1cm) .. node[above,sloped] {label} (christoffel);
+% \draw[->,blue] (field-eq) -- (y);
+% \draw[->,red] (field-eq) -| node[near start,below] {label} (y);
+% \draw[<-,orange] (field-eq) .. controls +(up:1cm) and +(left:1cm) .. node[above,sloped] {label} (y);
+
+\begin{scope}[>={Stealth[black]}]
+    \path [->, draw, rounded corners] (cov-d) -| 
+    node [near start, align=center, above] {
+        metric compatible: $\nabla_\mu g_{\mu\rho} = 0$\\torsion-free: $\Gamma\indices{_\mu^\lambda_\nu} = \Gamma\indices{_{(\mu}^\lambda_{\nu)}}$
+    } (christoffel);
+    \path [->, draw, rounded corners] (cov-d) -| (parallel-transport);
+    \path [->, draw] (parallel-transport) -- (geodesics-eq);
+    \path [->, draw] (christoffel) --
+    node [align=left, right] {
+        $[\nabla_\mu, \nabla_\nu]V^\rho = R\indices{^\rho_{\sigma\mu\nu}}V^{\sigma} - 2\Gamma\indices{_{[\mu}^{\lambda}_{\nu]}} \nabla_\lambda V^\rho$
+    } (riemann);
+    \path [->, draw] (riemann) -- (ricci);
+\end{scope}
+% \path [->] edge[bend left] (a) node [] {label} (b)
+
+\end{tikzpicture}
+
+\end{center}
+% https://tex.stackexchange.com/questions/270543/draw-a-graph-in-latex-with-tikz
 \begin{multicols}{2}
+
+\begin{align}
+    \qq{Line element} & ds^2 = g_{\mu\nu}\dd{x}^\mu\dd{x}^\nu
+    \\
+    \qq{Proper time} & (\dd{\tau})^2 = -g_{\mu\nu}\dd{x}^\mu\dd{x}^\nu
+\end{align}
+
+The proper time between two events measures the time elapsed as seen by an observer moving on a straight path between the events. 
+
+Locally inertial frame
+\begin{align}
+    g_{\hat{\mu}\hat{\nu}} = \eta_{\hat{\mu}\hat{\nu}}, \partial_{\hat{\rho}} g_{\hat{\mu}\hat{\nu}} = 0
+\end{align}
+
+Torsion Tensor $T\indices{^\lambda_\mu_\nu} = 
+\Gamma\indices{_\mu^\lambda_\nu} - 
+\Gamma\indices{_\nu^\lambda_\mu} =
+2\Gamma\indices{_{[\mu}^\lambda_{\nu]}}$
+
+Newtonian Gravitation theory
+\begin{align}
+    \vb{a} = -\nabla \Phi ,\quad \nabla^2\Phi = 4\pi G\rho
+\end{align}
+
+Newtonian approximation
+
+
+Energy-momentum tensor
+\begin{align}
+    \qq{Perfect fluid} & T_{\mu\nu} = (\rho + p)U_\mu U_\nu + p g_{\mu \nu}\\
+    \qq{Dust} & T_{\mu\nu} = \rho U_\mu U_\nu
+\end{align}
+
+\end{multicols}
+
+List of thing that should be addressed here
 
 Manifold
 
@@ -13,6 +112,8 @@ Vector
 Tensor
 
 Metric
+
+Local inertial frame
 
 Lorentz transformation
 
@@ -26,7 +127,8 @@ Riemann curvature tensor
 
 Einstein's Field equation
 
+Schwarzschild metric
 
-\end{multicols}
+Properties of christoffel and riemann tensor
 
 \end{document}

@@ -1,0 +1,20 @@
+\documentclass[main]{subfiles}
+\begin{document}
+\begin{multicols}{2}
+
+\begin{gather}
+\int^\infty_\infty\dd{x}e^{-ax^{2}+cx} = \sqrt{\frac{\pi}{a}}e^{\frac{c^2}{4a}}\\
+\int^\infty_\infty\dd{x}e^{-(x,Ax)+(c,x)} = \frac{\pi^{\frac{N}{2}}}{\sqrt{\det A}} e^{\frac{1}{4}(c,A^{-1}c)}\\
+\delta^3(\vb{x}) = \frac{1}{(2\pi)^3} \int_\infty^\infty e^{i\vb{k}\cdot \vb{x}}\dd{\vb{k}}
+\end{gather}
+\end{multicols}
+
+Integral tricks
+\begin{multicols}{2}
+    Tangent half-angle substitution $t = \tan \frac{x}{2}$
+    \begin{gather*}
+        \dd x = \frac{2}{1 + t^2}\dd t,\quad \sin{x} = \frac{2t}{1 + t^2},\quad \cos{x} = \frac{1 - t^2}{1 + t^2}
+    \end{gather*}
+\end{multicols}
+
+\end{document}

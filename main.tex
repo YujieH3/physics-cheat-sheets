@@ -3,13 +3,23 @@
 % SUBFILES
 \usepackage{subfiles}
 
-% STYLE
+% STYLING
 \usepackage[margin=.5in]{geometry}
 \usepackage{multicol}
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\scshape}{\thesection}{1em}{}
+
+% DRAW DIAGRAMS
+\usepackage{tikz}
+\usetikzlibrary {arrows.meta,graphs,graphdrawing} 
+\usegdlibrary{layered}
+% \usetikzlibrary{mindmap}
 
 % MATH
 \usepackage{amsmath, amssymb, physics}
 \usepackage{tensor}
+\usepackage{bbold} % for identity one
 
 % CUSTOMIZED COMMANDS
 \newcommand{\p}{\partial}
@@ -20,7 +30,20 @@
 
 \tableofcontents
 
+\newpage
+\section{Classical Mechanics}
+\subfile{classical-mechanics}
+
+\newpage
 \section{Field Theory}
 \subfile{effective-field-theory}
+
+\newpage
+\section{General Relativity}
+\subfile{general-relativity}
+
+\newpage
+\section{Thermodynamics and Statistical Physics}
+\subfile{thermodynamics-and-statistical-physics}
 
 \end{document}

@@ -1,0 +1,45 @@
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\begin{multicols}{2}
+    Notations and convention: sign convention $(-+++)$. $\bar{\Psi} = \Psi^\dagger\gamma^0$
+
+    Canonical quantization and braket notation
+    \begin{align}
+        \qq{Orthogonality} \braket{\alpha}{\beta} = \delta_{\alpha\beta}\\
+        \qq{Completeness relation} \sum_n\ket{n}\bra{n} = \mathbb{1}
+    \end{align}
+    
+    \paragraph{Pauli Matrices} Hermitian, Involutary and Unitary $2\times2$ matrices. Anti-commute and square to unity. $\acomm{\sigma_i}{\sigma_j} = 2\delta_{ij}$.
+    \begin{gather}
+        \sigma_1 = \mqty(0 & 1 \\ 1 & 0),\,
+        \sigma_2 = \mqty(0 & -i \\ i & 0),\,
+        \sigma_3 = \mqty(1 & 0 \\ 0 & -1)
+    \end{gather}
+
+    $t_i = \sigma_i/2$ $\implies$ $\Tr(t_i t_j) = \delta_{ij}/2$ and $[t_i, t_j] = i\epsilon_{ijk}t_k$
+
+    \paragraph{Dirac Equation}
+    \begin{gather}
+        (i\gamma^\mu\partial_\mu - m) \psi = 0\\
+        \gamma^0 = \mqty(\mathbb{1} & 0 \\ 0 & \mathbb{1}), 
+        \gamma^i = \mqty(0 & \sigma^i \\ -\sigma^i & 0)
+    \end{gather}
+
+    \paragraph{Weyl Repensentation}
+    \begin{gather}
+        \gamma^\mu = \mqty(0 & \sigma^\mu \\ \bar{\sigma}^\mu & 0), \qquad
+        \begin{aligned}
+            \sigma^\mu &= (\mathbb{1}, \sigma^i)\\
+            \bar{\sigma}^\mu &= (\mathbb{1}, -\sigma^i)
+        \end{aligned}
+    \end{gather}
+    
+\end{multicols}
+
+
+
+
+
+\end{document}

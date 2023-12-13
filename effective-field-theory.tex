@@ -2,13 +2,15 @@
 
 \begin{document}
 
-\begin{center}
-    \textbf{Effective Field Theory}
-\end{center}
+% \ifSubfilesClassLoaded{% then branch
+% \begin{center}
+%     \textbf{Effective Field Theory}
+% \end{center}
+% }
 
 \begin{multicols}{2}
 Notations and convensions:
-Einstein summation rules. Sign convension $(+---)$. Minkowski space. D'Alembert symbol $\Box = \partial_\mu\partial^\nu = \partial_t^2 - \nabla^2$.
+Einstein summation rules. Sign convension $(-+++)$. Minkowski space. D'Alembert symbol $\Box = \partial_\mu\partial^\nu = \partial_t^2 - \nabla^2$.
 
 Euler-Lagrange equation for fields
 \begin{gather}
@@ -61,12 +63,6 @@ Actions
     S = \int\dd[4]{x} \qty[-(D_{\mu }\psi )^*(D_{\mu }\psi ) - m^2 \psi ^*\psi - \frac{1}{4}F^{\mu \nu }F_{\mu \nu }]\\
     & \qq{Covariant derivative} D_{\mu } := \partial_{\mu } + ieA_{\mu }
 \end{align}
-
-Maths
-\begin{gather}
-\int^\infty_\infty\dd{x}e^{-ax^{2}+cx} = \sqrt{\frac{\pi}{a}}e^{\frac{c^2}{4a}}\\
-\int^\infty_\infty\dd{x}e^{-(x,Ax)+(c,x)} = \frac{\pi^{\frac{N}{2}}}{\sqrt{\det A}} e^{\frac{1}{4}(c,A^{-1}c)}
-\end{gather}
 
 Misc
 \begin{gather}

@@ -9,6 +9,7 @@
 \usepackage{titlesec}
 \titleformat{\section}
   {\normalfont\scshape}{\thesection}{1em}{}
+\usepackage[moderate]{savetrees} % fit in fewer pages
 
 % DRAW DIAGRAMS
 \usepackage{tikz}
@@ -16,8 +17,11 @@
 \usegdlibrary{layered}
 % \usetikzlibrary{mindmap}
 
+% TABLES
+\usepackage{booktabs}
+
 % MATH
-\usepackage{amsmath, amssymb, physics}
+\usepackage{mathtools, amsmath, amssymb, physics}
 \usepackage{tensor}
 \usepackage{bbold} % for identity one
 
@@ -25,6 +29,7 @@
 \newcommand{\p}{\partial}
 \newcommand{\La}{\mathcal{L}}
 \newcommand{\ra}{\rightarrow}
+\renewcommand{\dv}[3][]{\frac{d^{#1}{#2}}{d{#3}^{#1}}} % Follow Carroll's derivative notation. \mathrm{d} for one forms
 
 \begin{document}
 

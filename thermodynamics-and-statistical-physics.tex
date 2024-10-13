@@ -9,8 +9,19 @@ Notation: $\beta = 1/k_BT$
 Maxwell-Boltzmann distribution
 
 Bose-Einstein distribution
-
+\begin{gather}
+    f_\text{BE}(p) = \frac{1}{e^{E(p)/T} - 1}
+\end{gather}
 Fermi-Dirac distribution
+\begin{gather}
+    f_\text{FD}(p) = \frac{1}{e^{E(p)/T} + 1}
+\end{gather}
+where $E(p)$ is the energy of a particle with the momentum $p$ and the thermal potential is considered to be equal to zero. The average thermal (density) value of some quantity $X$ at temperature $T$ is given by
+\begin{gather}
+    \langle X\rangle = \frac{g}{(2\pi)^3} \int X(p)f(p) d^3p
+\end{gather}
+
+
 
 Partition functions
 \begin{gather}

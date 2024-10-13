@@ -2,19 +2,30 @@
 
 \begin{document}
 
-Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
+Sign convension $(-+++)$. 
+$d\lambda$ is an infinitesimal quantity, upright $\dd{x^\mu}$ is a covariant one-form. 
 
 \begin{center}
 \begin{tikzpicture}
-\path (0,0) node [rectangle, draw, align=center, below](field-eq) { % rectangle, draw to draw a box aroung the whole node
-    Einstein's Equation\\
-    $R_{\mu\nu} + \dfrac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}$\\
+\path (0,3.2) node [rectangle, draw, align=center, below](einstein) { % rectangle, draw to draw a box aroung the whole node
+    Einstein's Field Equation\\
+    $R_{\mu\nu} - \dfrac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}$\\
     or $R_{\mu\nu} = 8\pi G \qty(T_{\mu\nu} - \frac{1}{2} Tg_{\mu\nu})$
+    }
+    (5,0.5) node [align=center, below](hilbert-action) {
+    Hilbert Action\\
+    $\displaystyle
+    S_H = \int \sqrt{-g} R \,d^n x$
+    }
+    (0,0.5) node [align=center, below](action) {
+    Action\\
+    $\displaystyle
+    S = \frac{1}{16\pi G} S_H + S_M$
     }
     (0,8) node [align=center, below](cov-d) {
     Covariant Derivative\\
     $\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma\indices{_\mu^\nu_\rho} V^\rho$\\
-    $\nabla_\mu \omega_\nu = \partial_\mu \omega_\nu + \Gamma\indices{_\mu^\rho_\nu} \omega_\rho$
+    $\nabla_\mu \omega_\nu = \partial_\mu \omega_\nu - \Gamma\indices{_\mu^\rho_\nu} \omega_\rho$
     }
     (6,7) node [align=center, below](christoffel) {
     Christoffel Connection\\
@@ -22,11 +33,11 @@ Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
     }
     (-5,7) node [align=center,below](parallel-transport) {
     Parallel Transport\\
-    $\displaystyle \frac{D}{\mathrm{d}\lambda}V^\mu \equiv \dv{x^\rho}{\lambda} \nabla_\rho V^{\mu} = 0$
+    $\displaystyle \frac{D}{d\lambda}V^\mu \equiv \dv{x^\rho}{\lambda} \nabla_\rho V^{\mu} = 0$
     }
-    (-5,5) node [align=center,below](geodesics-eq) {
-    Geodesics Equation\\
-    $\displaystyle \dv[2]{x^\sigma}{\lambda} + \Gamma\indices{_\mu^\sigma_\nu}\dv{x^\mu}{\lambda}\dv{x^\nu}{\lambda} = 0$
+    (-5,4.5) node [align=center,below](geodesics) {
+    Geodesics Equation (free fall)\\
+    $\displaystyle \dv[2]{x^\mu}{\lambda} + \Gamma\indices{_\rho^\mu_\sigma}\dv{x^\rho}{\lambda}\dv{x^\sigma}{\lambda} = 0$
     }
     (6,5) node [align=center,below] (riemann) {
     Riemann Tensor\\
@@ -35,7 +46,7 @@ Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
     }
     (6,3.5) node [align=left, below] (ricci) {
     Ricci Tensor $\displaystyle R_{\mu\nu} = R\indices{^\rho_{\mu\rho\nu}}$\\
-    Ricci Scalar $\displaystyle R = R\indices{^\mu_\mu} = g^{\nu\mu}R_{\mu\nu}$
+    Ricci Scalar $\displaystyle R = R\indices{^\mu_\mu} = g^{\mu\nu}R_{\mu\nu}$
     }
     
 ; % Don't remove this semicolon
@@ -52,12 +63,28 @@ Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
         metric compatible: $\nabla_\mu g_{\mu\rho} = 0$\\torsion-free: $\Gamma\indices{_\mu^\lambda_\nu} = \Gamma\indices{_{(\mu}^\lambda_{\nu)}}$
     } (christoffel);
     \path [->, draw, rounded corners] (cov-d) -| (parallel-transport);
-    \path [->, draw] (parallel-transport) -- (geodesics-eq);
+    \path [->, draw] (parallel-transport) --
+    node [near start, align=left, right] {
+        $p^\lambda \nabla_\lambda p^\mu = 0$
+    }
+    (geodesics);
     \path [->, draw] (christoffel) --
-    node [align=left, right] {
-        $[\nabla_\mu, \nabla_\nu]V^\rho = R\indices{^\rho_{\sigma\mu\nu}}V^{\sigma} - 2\Gamma\indices{_{[\mu}^{\lambda}_{\nu]}} \nabla_\lambda V^\rho$
+    node [align=right, left] {
+        $[\nabla_\mu, \nabla_\nu]V^\rho = R\indices{^\rho_{\sigma\mu\nu}}V^{\sigma} - T\indices{^{\lambda}_{\mu\nu}} \nabla_\lambda V^\rho$
     } (riemann);
-    \path [->, draw] (riemann) -- (ricci);
+    \path [->, draw] 
+        (riemann) -- (ricci);
+    \path [->, draw, rounded corners] 
+        (ricci) |- (einstein);
+    \path [->, draw, rounded corners] 
+        (hilbert-action) -- (action);
+    \path [->, draw, rounded corners] (action) -- 
+    node [align=left, right] {
+        $\displaystyle T_{\mu\nu} \coloneq -2\frac{1}{\sqrt{-g}} \fdv{S_M}{g^{\mu\nu}}$
+    }
+    node [near start, align=right, left] {
+        $\displaystyle \frac{1}{\sqrt{-g}} \fdv{S}{g^{\mu\nu}} = 0$
+    } (einstein);
 \end{scope}
 % \path [->] edge[bend left] (a) node [] {label} (b)
 
@@ -67,68 +94,303 @@ Notations and convensions: Einstein summation rules. Sign convension $(-+++)$.
 % https://tex.stackexchange.com/questions/270543/draw-a-graph-in-latex-with-tikz
 \begin{multicols}{2}
 
+% Lorentz transformation (Only in Minkowski)
+% \begin{align}
+%     x^{\mu'} &= \Lambda\indices{^{\mu'}_{\mu}}x^\mu
+%     \\
+%     \eta_{\rho\sigma} &= \Lambda\indices{^{\mu'}_\rho} \Lambda\indices{^{\nu'}_\sigma} \eta_{\mu'\nu'}
+% \end{align}
+
 \begin{align}
     \qq{Line element} & ds^2 = g_{\mu\nu}\dd{x}^\mu\dd{x}^\nu
     \\
     \qq{Proper time} & (\dd{\tau})^2 = -g_{\mu\nu}\dd{x}^\mu\dd{x}^\nu
+    \\
+    & \tau = \int \sqrt{-g_{\mu\nu} \dv{x^\mu}{\lambda}\dv{x^\nu}{\lambda}}d\lambda \label{eq:tau}
+    \\
+    \delta \tau = 0 \Leftrightarrow \delta I = 0 ,\quad & I = \frac{1}{2} \int g_{\mu\nu} \dv{x^\mu}{\lambda}\dv{x^\nu}{\lambda}d\lambda \tag{C.3.49}
+\end{align}
+Proper time is defined only for timelike paths (not spacelike nor null). Geodesic equation holds for both timelike and null paths. \textit{The proper time between two events measures the time elapsed as seen by an observer moving on a straight path between the events.}
+
+\textbf{Metric}
+\begin{align}
+    \qq{Inverse} & g^{\mu\rho} g_{\rho\nu} = \delta^\mu_\nu
+    \\
+    \qq{Determinant} & g = \det(g_{\mu\nu})
+    \\
+    \qq{Trace} & g^{\mu\nu} g_{\mu\nu} = 4
 \end{align}
 
-The proper time between two events measures the time elapsed as seen by an observer moving on a straight path between the events. 
-
-Locally inertial frame
+\textbf{Four vectors}
 \begin{align}
-    g_{\hat{\mu}\hat{\nu}} = \eta_{\hat{\mu}\hat{\nu}}, \partial_{\hat{\rho}} g_{\hat{\mu}\hat{\nu}} = 0
+    \text{Timelike} & \left\{
+    \begin{aligned}
+    U^\mu &\equiv \dv{x^\mu}{\tau} 
+    =_\text{M} (\gamma, \gamma \vb{v})
+    =_\text{M,r} (1, \vb{v})\\
+    p^\mu &\equiv mU^\mu 
+    =_\text{M} (\gamma m, \gamma m \vb{v})
+    =_\text{M} (m, \vb{p})
+    \end{aligned}
+    \right.
+    \\
+    \text{Null} & \left\{
+    \begin{aligned}
+    U^\mu &\qq{not defined}\\
+    p^\mu &\equiv \dv{x^\mu}{\lambda}
+    =_\text{M} (\omega, \vb{k}) \label{eq:null-four-momentum}
+    \end{aligned}
+    \right.
+\end{align}
+Note \eqref{eq:null-four-momentum} holds by our deliberate choice of the affine parameter $\lambda$. Identities
+\begin{align}
+    U_\mu U^\mu &= -1
+    \\
+    p_\mu p^\mu &= -m^2 \implies E^2 = \vb{p}^2 + m^2
+    \\
+    p^0 &= E \implies E =_\text{r} m
+    \\
+    -1 = U_\mu U^\mu &= g_{00}(U^0)^2 + |\vb{v}|^2 \tag{cf.C.8.100}
 \end{align}
 
-Torsion Tensor $T\indices{^\lambda_\mu_\nu} = 
-\Gamma\indices{_\mu^\lambda_\nu} - 
-\Gamma\indices{_\nu^\lambda_\mu} =
-2\Gamma\indices{_{[\mu}^\lambda_{\nu]}}$
+The energy of a particle (massive or photon) with momentum $p^\mu$ measured by an observer with four-velocity $U^\mu$ is the four-momentum projected onto the four-velocity, their inner product
+\begin{gather}
+    E = -p_\mu U^\mu \tag{C.3.63}
+\end{gather}
 
-Newtonian Gravitation theory
+\paragraph{Local inertial frame}
 \begin{align}
-    \vb{a} = -\nabla \Phi ,\quad \nabla^2\Phi = 4\pi G\rho
+    g_{\hat{\mu}\hat{\nu}} = \eta_{\hat{\mu}\hat{\nu}},\quad 
+    \partial_{\hat{\rho}} g_{\hat{\mu}\hat{\nu}}(p) = 0,\quad
+    \Gamma\indices{_{\hat{\mu}}^{\hat{\rho}}_{\hat{\nu}}}(p) = 0
 \end{align}
 
-Newtonian approximation
+\paragraph{Covariant derivatives} $\Gamma\indices{_\mu^\rho_\nu} = \Gamma\indices{_\nu^\rho_\mu}$  
 
-
-Energy-momentum tensor
 \begin{align}
+    \nabla_\mu V^\mu = \frac{1}{\sqrt{-g}} \partial_\mu(\sqrt{-g} V^\mu)
+    \\
+    \int\sqrt{-g} \nabla_\mu V^\mu = \int 
+    \partial_\mu(\sqrt{-g} V^\mu)
+\end{align}
+
+\paragraph{Geodesics}
+
+Parallel transport preserves inner product / The inner product of two parallel-transported vectors is preserved.
+\begin{align}
+    \frac{D}{d\lambda} U^\mu = 0, \frac{D}{d\lambda} W^\mu = 0 \implies \frac{D}{d\lambda} (g_{\mu\nu} U^\mu W^\nu) = 0
+\end{align}
+
+\begin{align}
+    \qq{For timelike paths} & U^\lambda \nabla_\lambda U^\mu = 0 \tag{C.3.60}
+    \\
+    \qq{For timelike and null paths} & p^\lambda \nabla_\lambda p^\mu = 0 \tag{C.3.61}
+    \\
+    \dv[2]{x^\mu}{\lambda} + \Gamma\indices{_\rho^\mu_\sigma}\dv{x^\rho}{\lambda}\dv{x^\sigma}{\lambda} &= \frac{q}{m}F\indices{^\mu_\nu}\dv{x^\nu}{\lambda}
+    \tag{C.3.56}
+\end{align}
+If a null path is a geodesic for some parameter $\lambda$, it will also be a geodesic for any other affine parameter of the form $a\lambda + b$. 
+
+\paragraph{Riemann tensor} 20 independent components
+\begin{gather}
+    R\indices{^\rho_{\sigma\mu\nu}} = - R\indices{^\rho_{\sigma\nu\mu}}
+    \\
+    R_{\rho\sigma\mu\nu} = - R_{\sigma\rho\mu\nu} \tag{C.3.129}
+    \\
+    R_{\rho\sigma\mu\nu} = - R_{\rho\sigma\nu\mu}
+    \\
+    R_{\rho\sigma\mu\nu} = R_{\mu\nu\rho\sigma}
+    \\
+    R_{\rho\sigma\mu\nu} + R_{\rho\mu\nu\sigma} + R_{\rho\nu\sigma\mu} = 0
+    \\
+    R_{\rho[\sigma\mu\nu]} = 0
+    \\
+    R_{\rho\sigma\mu\nu} = 0
+    \\
+    \qq{Bianchi identity} \nabla_{[\lambda} R_{\rho\sigma]\mu\nu} = 0 \tag{C.3.140}
+    \\
+    R_{\mu\nu} = R_{\nu\mu}
+\end{gather}
+Twice contracted Bianchi identity $\implies \nabla^\mu G_{\mu\nu} = 0$
+
+\paragraph{Energy-momentum tensor} Symmetric (0,2) tensor
+\begin{align}
+    \qq{Definition} & T_{\mu\nu} \coloneq -2 \frac{1}{\sqrt{-g}} \fdv{S_M}{g^{\mu\nu}} \tag{C.4.75}\\
     \qq{Perfect fluid} & T_{\mu\nu} = (\rho + p)U_\mu U_\nu + p g_{\mu \nu}\\
-    \qq{Dust} & T_{\mu\nu} = \rho U_\mu U_\nu
+    \qq{Dust} & T_{\mu\nu} = \rho U_\mu U_\nu\\
+    \qq{Conservation law} & \nabla_\mu T^{\mu\nu} = 0
 \end{align}
+
+\paragraph{Killing equation and Killing vectors} 
+
+The change in the metric tensor for small displacements $\delta x^\mu = \epsilon K^\mu$ is
+\begin{align}
+    \delta g_{\mu\nu} =& -\epsilon (\nabla_\mu K_\nu + \nabla_\nu K_\mu)
+    \\
+    =& -\epsilon (K^\rho \partial_\rho g_{\mu\nu} + g_{\mu\rho}\partial_\nu K^\rho + g_{\nu\rho}\partial_\mu K^\rho)
+\end{align}
+If $\delta g_{\mu\nu} = 0$, then $K^\mu\partial_\mu$ is a Killing vector. $x^\mu \rightarrow x^\mu + \epsilon K^\mu$ is a symmetry of the metric (isometry).
+\begin{gather}
+    \nabla_{(\mu}K_{\nu)} = 0 \implies p^\mu\nabla_\mu(K_\nu p^\nu) = 0, \text{ or } \frac{D}{d\lambda}(p_\mu K^\mu) = 0
+\end{gather}
+1) $p_\mu K^\mu$ is conserved along geodesics and \\
+2) $J^\mu = T^{\mu\nu}K_\nu$ is a conserved current $\nabla_\mu J^\mu = 0$.
+
+Additionally
+\begin{gather}
+    \exists {\sigma_*} \text{ s.t. } \partial_{\sigma_*}g_{\mu\nu} = 0 \Leftrightarrow \partial_{\sigma_*} \text{ is a Killing vector}
+    \\
+    \Leftrightarrow x^{\sigma_*}\rightarrow x^{\sigma_*} + a^{\sigma_*} \text{ is an isometry}
+\end{gather}
+
+The Lie bracket of two Killing vectors is also a Killing vector. \textit{When an observer travels in the direction of a Killing vector, the metric tensor will not change.}
+
+
 
 \end{multicols}
 
-List of thing that should be addressed here
+\begin{multicols}{2}
+\paragraph{Schwarzschild Solution}
+    \begin{align}
+        ds^2 = - \qty(1 - \frac{2GM}{r}) \dd{t}^2 + \frac{\dd{r}^2}{\qty(1 - \frac{2GM}{r})} + r^2 (\dd{\theta}^2 + \sin^2\theta) \dd{\phi}^2 \notag
+    \end{align}
+    have one singularity at $r=0$. \textit{Geometric singularity is when any of the curvature invariants (e.g. $R^{\sigma\rho\mu\nu}R_{\sigma\rho\mu\nu}$) goes to infinity.}
 
-Manifold
+    Sch. metric have 1 timelike Killing vector $\partial_t$ and 3 spherical symmetric rotation Killing vector $R, S, T$. 
 
-One-form
+    \paragraph{Reissner-Nordström Solution}
+    \begin{gather}
+        ds^2 = -\Delta(r) \dd{t}^2 + \frac{\dd{r}^2}{\Delta(r)} + r^2\dd{\Omega}^2
+        \\
+        \qq{where}\Delta(r) = 1 - \frac{2GM}{r} + \frac{G(Q^2 + P^2)}{r^2}
+        \\
+        \Delta(r) = 0 (\implies) r_{\pm} = GM \pm \sqrt{G^2M^2 - G(Q^2+P^2)}
+    \end{gather}
+    one sigularity at $r=0$. $GM^2 < Q^2 + P^2$: naked singularity. $GM^2 > Q^2 + P^2$ (expected): two coordinate singularities (horizons) at $r_{\pm}$. $GM^2 = Q^2 + P^2$: one horizon.
+    
+    
+\end{multicols}
+\begin{multicols}{2}
 
-Vector
+\paragraph{Cosmology}
+    FLRW metric.
+    \begin{gather}
+        ds^2 = -\dd{t}^2 + a^2(t)\qty[\frac{\dd{r}^2}{1 - \kappa r^2} + r^2 d\Omega^2]
+        \\
+        \qq{or} ds^2 = -\dd{t}^2 + a^2(t)R_0^2[d\chi^2 + S_k^2(\chi) d\Omega^2]
+    \end{gather}
+    have a true singularity at $t=0$. 
+    
+    FLRW metric have a number of spacelike Killing tensor, no timelike Killing vector to conserve energy. A Killing tensor
+    \begin{gather}
+        K_{\mu\nu} = a^2(g_{\mu\nu} + U_\mu U_\nu) \qq{satisfies} \nabla_{(\sigma}K_{\mu\nu)}=0
+        \tag{C.8.98}
+        \\
+        \implies K^2 = K_{\mu\nu} V^\mu V^\nu = a^2[V_\mu V^\mu + (U_\mu V^\mu)^2] = \text{const.}
+        \\
+        \implies |\vb{v}| = \frac{K}{a} \text{ for timelike},\,
+        U_\mu V^\mu = \frac{K}{a} \text{ for null (redshift)}
+    \end{gather}
 
-Tensor
+    Instantaneous physical distance / Proper distance $d_P$
+    \begin{align}
+        d_P(t) = a(t)R_0\chi = a(t) \int \frac{d r}{\sqrt{1 - \kappa r^2}}
+    \end{align}
 
-Metric
+    % Luminosity distance, each photon redshift by $(1+z)$ and less photon by $(1+z)$
+    % \begin{gather}
+    %     d_L = \frac{L}{4\pi F},\, \frac{F}{L} = \frac{1}{(1+z)^2A},\, A=4\pi R_0^2 S_k^2
+    %     \\
+    %     d_L = (1+z)d_P
+    % \end{gather}
+    
+    % Lookback time (don't think it will be on the test / useful though.)
+\end{multicols}
 
-Local inertial frame
+\paragraph{Methods}
+\begin{multicols}{2}
+Euler-Lagrange equation
+    \begin{align}
+        \dv{}{\lambda}\qty(\fdv{S}{\dot{x}^\mu}) - \fdv{S}{x^\mu} = 0,\quad \dot{x}^\mu = \dv{x^\mu}{\lambda}
+    \end{align}
 
-Lorentz transformation
+Null geodesics is geodesics equation + null path $(ds^2=0)$
 
-Covariant derivative
+Rest-frame observer $U^\mu = (U^0, 0, 0, 0)$, where
+    \begin{align}
+        g_{\mu\nu} U^\mu U^\nu = -1 \implies g_{00}(U^0)^2 = -1 \implies U^0
+    \end{align}
 
-Christoffel symbol
+\paragraph{Newtonian approximation}
+Newtonian theory $$\vb{a} = -\nabla \Phi ,\quad \nabla^2\Phi = 4\pi G\rho$$
+\begin{align}
+    \qq{Weak field}& g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu},\, |h_{\mu\nu}| \ll 1
+    \\
+    \qq{Small $v$}& |v|\ll c \implies dt \gg dx^i,\,
+    \partial_i \gg \partial_0,\,
+    \dv{x^i}{\tau} \ll \dv{t}{\tau}\notag
+    \\
+    \qq{Static}& \partial_0 g_{\mu\nu} \sim \order{v/c}
+    \\
+    T_{\mu\nu} = \rho U_\mu U_\nu,\,
+    g_{00} =& -1 + h_{00},\,
+    g^{0
+0} = -1 - h_{00},\,
+    h_{00} = -2\Phi
+    \notag
+\end{align}
 
-Geodesics equation, variation methods
+\paragraph{Linearized gravity} Weak field, arbitrary $v$, non-static metric. The change under infinitesimal coordinate change $\delta x^\mu = -\epsilon\xi^\mu$
+\begin{align}
+    \eta_{\mu\nu} + h_{\mu\nu} \rightarrow & \eta_{\mu\nu} + h_{\mu\nu} + \delta h_{\mu\nu}
+    \\
+    &= \eta_{\mu\nu} + h_{\mu\nu} + \epsilon(\partial_\mu \xi_\nu + \partial_\nu \xi_\mu) + \order{\epsilon^2}
+ \end{align}
 
-Riemann curvature tensor
+\end{multicols}
 
-Einstein's Field equation
+\paragraph{Misc}
+\begin{multicols}{2}
+    Maxwell's equations
+    \begin{gather}
+        \nabla_\mu F^{\nu\mu} = J^\nu, J^\mu = (\rho, \vb{J})
+        \\
+        \nabla_{[\mu} F_{\nu\lambda]} \qq{or} \nabla_\mu F_{\nu\lambda} + \nabla_\nu F_{\lambda\mu} + \nabla_\lambda F_{\mu\nu} = 0
+        \\
+        F_{\mu\nu} = \partial_\mu A_\nu - \partial_{\nu}A_\mu \equiv \nabla_\mu A_\nu - \nabla_{\nu}A_\mu,\notag
+        \quad
+        F_{0i} = -E_i,\, F_{ij} = \epsilon_{ijk}B^{k}
+    \end{gather}
 
-Schwarzschild metric
+    A notation. For higher orders, use permutation $1/p!$, $(-1)^p$.
+    \begin{align}
+        T_{(\mu\nu)} = \frac{1}{2} (T_{\mu\nu} + T_{\nu\mu})
+        ,\quad T_{[\mu\nu]} = \frac{1}{2} (T_{\mu\nu} - T_{\nu\mu})
+    \end{align}
 
-Properties of christoffel and riemann tensor
+    Torsion Tensor $T\indices{^\lambda_\mu_\nu} = 
+    \Gamma\indices{_\mu^\lambda_\nu} - 
+    \Gamma\indices{_\nu^\lambda_\mu} =
+    2\Gamma\indices{_{[\mu}^\lambda_{\nu]}}$
+
+    d'Alembertian $\Box = \nabla_\mu \nabla^\mu$
+    \begin{align}
+        \square f = \frac{1}{\sqrt{-g}} \partial_\mu (\sqrt{-g} \nabla^\mu f)
+    \end{align}
+
+    In variation
+    \begin{gather}
+        \ln(\det M) = \Tr(\ln M) \tag{C.4.66}
+        \\
+        \frac{1}{\det M} \delta \det M = \Tr(M^{-1} \delta M) \qq{sub $M$ with $g_{\mu\nu}$}
+        \\
+        \implies \delta\sqrt{-g} = -\frac{1}{2} \sqrt{-g} g_{\mu\nu}\delta g^{\mu\nu}
+        \\
+        \frac{1}{\sqrt{-g}}\fdv{S_H}{g^{\mu\nu}} = R_{\mu\nu} - \frac{1}{2}g_{\mu\nu} R,\quad \frac{1}{\sqrt{-g}}\fdv{S_M}{g^{\mu\nu}} = -\frac{1}{2}T_{\mu\nu}
+    \end{gather}
+\end{multicols}
+
+\newpage
+
 
 \end{document}

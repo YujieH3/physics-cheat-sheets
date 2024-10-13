@@ -2,10 +2,16 @@
 \begin{document}
 \begin{multicols}{2}
 
+\paragraph{Special Integrals}
 \begin{gather}
 \int^\infty_\infty\dd{x}e^{-ax^{2}+cx} = \sqrt{\frac{\pi}{a}}e^{\frac{c^2}{4a}}\\
 \int^\infty_\infty\dd{x}e^{-(x,Ax)+(c,x)} = \frac{\pi^{\frac{N}{2}}}{\sqrt{\det A}} e^{\frac{1}{4}(c,A^{-1}c)}\\
-\delta^3(\vb{x}) = \frac{1}{(2\pi)^3} \int_\infty^\infty e^{i\vb{k}\cdot \vb{x}}\dd{\vb{k}}
+(2\pi)^3\delta^3(\vb{x}) = \int_\infty^\infty e^{i\vb{k}\cdot \vb{x}}\dd{\vb{k}}
+\\
+\lim_{t\rightarrow \infty}
+\frac{\sin^2(\alpha t)}{t\alpha^2} = \pi \delta(\alpha)
+\\
+\int_0^t e^{i\omega t'} \,dt' = \frac{2\sin(\frac{\omega t}{2})}{\omega}
 \end{gather}
 \end{multicols}
 
